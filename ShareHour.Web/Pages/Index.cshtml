@@ -1,0 +1,30 @@
+@page
+@model IndexModel
+@{ ViewData["Title"] = "Explore tools"; }
+<section class="hero p-4 p-md-5 mb-4 rounded-4">
+  <div class="eyebrow">SHARE MORE. OWN LESS.</div>
+  <h1>Useful tools, only for the hours you need.</h1>
+  <p>Browse locally shared tools, choose a time slot and send an approval request to the owner.</p>
+  <form method="get" class="d-flex gap-2 flex-wrap mt-3" role="search">
+    <input class="form-control search-input" name="search" value="@Model.Search" id="liveSearch" placeholder="Search tools..." aria-label="Search tools" />
+    <button class="btn btn-warning" type="submit">Find tools</button>
+  </form>
+</section>
+<h2 class="h4 mb-3">Available tools <span class="badge bg-secondary" id="visibleToolCount">@Model.Tools.Count</span></h2>
+@if (!Model.Tools.Any()) { <p class="alert alert-light border">No matching tools. Try another search.</p> }
+<div class="row g-3">
+@foreach (var tool in Model.Tools)
+{
+ <div class="col-md-6 col-lg-4 tool-card" data-category="@tool.Category" data-search="@tool.Name.ToLowerInvariant() @tool.Description.ToLowerInvariant()">
+   <div class="card h-100 shadow-sm border-0">
+    <div class="tool-visual">@tool.Category</div>
+    <div class="card-body">
+     <span class="small text-secondary">@tool.Category · By @tool.Owner.FullName</span>
+     <h3 class="h5 mt-2">@tool.Name</h3><p>@tool.Description</p>
+     <p class="price">@tool.RateLabel()</p>
+     <a class="btn btn-dark" asp-page="/Bookings/Create" asp-route-toolId="@tool.Id">Request booking</a>
+    </div>
+   </div>
+ </div>
+}
+</div>

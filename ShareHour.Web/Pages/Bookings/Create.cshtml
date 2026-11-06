@@ -1,0 +1,21 @@
+@page
+@model ShareHour.Web.Pages.Bookings.CreateModel
+@{ ViewData["Title"] = "Request booking"; }
+<h1>Request booking</h1><p class="text-secondary">UC-01 · Choose a valid period; the owner will approve or reject.</p>
+<div class="row g-4"><div class="col-lg-5">
+<div class="card shadow-sm"><div class="card-body">
+<h2 class="h4">@Model.Tool?.Name</h2><p>@Model.Tool?.Description</p>
+<p>Owner: @Model.Tool?.Owner.FullName</p><p class="price">@Model.Tool?.RateLabel()</p>
+<p class="small text-secondary">Overlapping Pending and Approved reservations are not allowed.</p>
+</div></div></div>
+<div class="col-lg-7"><form method="post" class="card p-4 shadow-sm" id="bookingForm" data-hourly="@Model.Tool?.HourlyPrice.ToString(System.Globalization.CultureInfo.InvariantCulture)">
+ <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+ <input type="hidden" asp-for="Input.ToolId" />
+ <div class="mb-3"><label class="form-label" asp-for="Input.StartAt">Rental start</label><input class="form-control" type="datetime-local" asp-for="Input.StartAt" asp-format="{0:yyyy-MM-ddTHH:mm}" /><span class="text-danger" asp-validation-for="Input.StartAt"></span></div>
+ <div class="mb-3"><label class="form-label" asp-for="Input.EndAt">Rental end</label><input class="form-control" type="datetime-local" asp-for="Input.EndAt" asp-format="{0:yyyy-MM-ddTHH:mm}" /><span class="text-danger" asp-validation-for="Input.EndAt"></span></div>
+ <div class="alert alert-light border">Estimated total: <strong id="quote">Enter a valid period</strong></div>
+ <div class="form-check mb-3"><input class="form-check-input" asp-for="Input.AcceptTerms" /><label class="form-check-label" asp-for="Input.AcceptTerms">I agree to the listed hours and owner approval process</label></div>
+ <button class="btn btn-dark" type="submit">Submit request</button>
+ <a class="btn btn-link" asp-page="/Tools/Index">Cancel</a>
+</form></div></div>
+@section PageScripts { <script>window.shareHourQuote = true;</script> }

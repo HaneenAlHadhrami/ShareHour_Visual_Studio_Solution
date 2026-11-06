@@ -1,0 +1,13 @@
+SHARE HOUR - VISUAL STUDIO SOLUTION
+
+1. فك الضغط Extract All للمجلد كاملًا.
+2. افتحي ملف ShareHour.sln بالنقر المزدوج (موجود خارج مجلد ShareHour.Web).
+3. في Visual Studio: إذا احتجتِ، كليك يمين على ShareHour.Web ثم Set as Startup Project.
+4. Tools > NuGet Package Manager > Restore NuGet Packages أو كليك يمين على Solution ثم Restore NuGet Packages.
+5. اختاري Launch Profile باسم ShareHour.Web ثم Ctrl+F5.
+6. افتحي http://localhost:5086 إذا لم يفتح المتصفح تلقائيًا.
+
+المتطلبات: Visual Studio مع ASP.NET and web development و.NET 8 SDK.
+لأول Restore تحتاجين الإنترنت لتحميل Microsoft.EntityFrameworkCore.Sqlite.
+الحزمة تضمنت ملف ShareHour.sln وملف .csproj وكامل كود Razor Pages.
+تنبيه: تعذر تنفيذ build في بيئة الإنشاء لعدم توفر dotnet SDK؛ يجب التحقق من التشغيل محليًا.

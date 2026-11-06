@@ -1,0 +1,23 @@
+@page
+@model ShareHour.Web.Pages.Tools.IndexModel
+@{ ViewData["Title"] = "Tool catalog"; }
+<h1>Tool catalog</h1><p class="text-secondary">Filter available tools by category.</p>
+<form method="get" class="row g-2 mb-4">
+ <div class="col-md-5"><select class="form-select" name="category" aria-label="Category">
+ <option value="All">All categories</option>
+ @foreach (var category in Enum.GetValues<ToolCategory>())
+ {
+    <option value="@category" selected="@(Model.Category == category.ToString())">@category</option>
+ }
+ </select></div><div class="col-auto"><button class="btn btn-dark" type="submit">Filter</button></div>
+</form>
+<table class="table table-hover align-middle">
+<thead><tr><th>Tool</th><th>Category</th><th>Hourly price</th><th>Owner</th><th></th></tr></thead>
+<tbody>
+@foreach (var t in Model.Items)
+{
+ <tr><td>@t.Name</td><td>@t.Category</td><td>@t.RateLabel()</td><td>@t.Owner.FullName</td>
+ <td><a class="btn btn-sm btn-outline-primary" asp-page="/Bookings/Create" asp-route-toolId="@t.Id">Book</a></td></tr>
+}
+</tbody></table>
+<p class="small">Showing @Model.Items.Count tools.</p>

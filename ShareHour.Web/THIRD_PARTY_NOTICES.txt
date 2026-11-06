@@ -1,0 +1,3 @@
+Bootstrap 5.3.6 (Copyright 2011-2025 Bootstrap Authors). MIT License, https://github.com/twbs/bootstrap/blob/main/LICENSE
+jQuery 3.6.1 (Copyright OpenJS Foundation and contributors). MIT License, https://jquery.org/license/
+These assets are copied from installed local copies to permit offline use of the demo interface.

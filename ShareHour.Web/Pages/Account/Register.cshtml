@@ -1,0 +1,12 @@
+@page
+@model ShareHour.Web.Pages.Account.RegisterModel
+@{ ViewData["Title"] = "Register"; }
+<h1>Create an account</h1><p>Register as a renter or a tool owner.</p>
+<div class="row"><div class="col-md-7"><form method="post" class="card p-4 shadow-sm">
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="mb-3"><label class="form-label" asp-for="Input.FullName"></label><input class="form-control" asp-for="Input.FullName"/><span asp-validation-for="Input.FullName" class="text-danger"></span></div>
+<div class="mb-3"><label class="form-label" asp-for="Input.Email"></label><input class="form-control" asp-for="Input.Email"/><span asp-validation-for="Input.Email" class="text-danger"></span></div>
+<div class="mb-3"><label class="form-label" asp-for="Input.Password"></label><input type="password" class="form-control" asp-for="Input.Password"/><span asp-validation-for="Input.Password" class="text-danger"></span></div>
+<div class="mb-3"><label class="form-label" asp-for="Input.ConfirmPassword"></label><input type="password" class="form-control" asp-for="Input.ConfirmPassword"/><span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span></div>
+<div class="mb-3"><label class="form-label" asp-for="Input.Role"></label><select asp-for="Input.Role" asp-items="Html.GetEnumSelectList<UserRole>()" class="form-select"></select></div>
+<button class="btn btn-dark">Create account</button></form></div></div>

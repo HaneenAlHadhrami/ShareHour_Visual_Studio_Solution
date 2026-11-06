@@ -1,0 +1,15 @@
+@page
+@model ShareHour.Web.Pages.Bookings.ReviewModel
+@{ ViewData["Title"] = "Owner requests"; }
+<h1>Owner booking requests</h1><p>Review requests for tools you own. Only their owner can decide.</p>
+<table class="table table-hover"><thead><tr><th>Tool</th><th>Renter</th><th>Rental time</th><th>Cost</th><th>Decision</th></tr></thead><tbody>
+@foreach (var b in Model.Pending)
+{
+<tr><td>@b.Tool.Name</td><td>@b.Renter.FullName</td><td>@b.StartAt.ToString("dd MMM HH:mm") - @b.EndAt.ToString("dd MMM HH:mm")</td><td>OMR @b.TotalCost.ToString("0.000")</td>
+<td><form method="post" class="d-flex gap-2"><input type="hidden" name="bookingId" value="@b.Id" />
+<button name="decision" value="Approve" class="btn btn-success btn-sm">Approve</button>
+<button name="decision" value="Reject" class="btn btn-outline-danger btn-sm">Reject</button>
+</form></td></tr>
+}
+</tbody></table>
+@if (!Model.Pending.Any()) { <div class="alert alert-light border">No pending requests.</div> }

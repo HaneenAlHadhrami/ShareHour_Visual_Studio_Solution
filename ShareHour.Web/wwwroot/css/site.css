@@ -1,0 +1,21 @@
+:root { --ink:#14322f; --teal:#17665d; --cream:#f8f6f0; --accent:#f0be4f; }
+body { background:#faf9f6; color:var(--ink); font-family:system-ui,Segoe UI,Arial,sans-serif; }
+.site-header { background:var(--ink); }
+.site-header .nav-link { color:#e9f0ee; text-decoration:none; padding:.35rem .5rem; }
+.site-header .nav-link:hover { color:var(--accent); }
+.brand { color:#fff; text-decoration:none; font-weight:800; letter-spacing:.01em; font-size:1.4rem; margin-right:1rem; }
+.brand:hover { color:#fff; }
+.hero { background:linear-gradient(120deg,#14332d,#26756b); color:white; }
+.hero h1 { max-width:720px; font-weight:750; }
+.hero p { max-width:650px; color:#e6f3f0; }
+.eyebrow { font-size:.75rem; font-weight:700; letter-spacing:.2em; color:#f1cc77; margin-bottom:1rem; }
+.search-input { max-width:430px; }
+.tool-visual { background:#e3eee9; color:#17665d; min-height:125px; display:flex; justify-content:center; align-items:center; letter-spacing:.1em; text-transform:uppercase; font-weight:800; }
+.price { color:#17665d; font-weight:800; }
+.card { border-radius:1rem; overflow:hidden; }
+.footer { background:#e8eee9; color:#536b64; font-size:.9rem; }
+.min-height-content { min-height:70vh; }
+.filter-width { max-width:260px; }
+.bg-status { background:#17665d; }
+.field-validation-error, .validation-summary-errors { font-size:.9rem; }
+@media(max-width:650px) { .site-header .navbar { justify-content:center; } .table { font-size:.85rem; } }

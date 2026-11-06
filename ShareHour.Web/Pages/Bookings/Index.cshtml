@@ -1,0 +1,19 @@
+@page
+@model ShareHour.Web.Pages.Bookings.IndexModel
+@{ ViewData["Title"] = "My bookings"; }
+<h1>My bookings</h1><p class="text-secondary">Track owner decisions and cancel pending requests.</p>
+<form method="get" class="d-flex gap-2 mb-3"><select name="status" class="form-select filter-width">
+<option value="">All statuses</option>
+@foreach (var st in Enum.GetValues<BookingStatus>())
+{ <option value="@st" selected="@(Model.Status == st)">@st</option> }
+</select><button type="submit" class="btn btn-dark">Filter</button></form>
+<table class="table table-striped align-middle"><thead><tr><th>#</th><th>Tool</th><th>Period</th><th>Total (OMR)</th><th>Status</th><th>Action</th></tr></thead><tbody>
+@foreach (var b in Model.Items)
+{
+<tr><td>@b.Id</td><td>@b.Tool.Name</td><td>@b.StartAt.ToString("dd MMM yyyy HH:mm")<br/>to @b.EndAt.ToString("dd MMM yyyy HH:mm")</td>
+<td>@b.TotalCost.ToString("0.000")</td><td><span class="badge bg-status">@b.Status</span></td><td>
+@if (b.Status == BookingStatus.Pending) { <form method="post" asp-page-handler="Cancel"><input type="hidden" name="id" value="@b.Id"/><button class="btn btn-sm btn-outline-danger">Cancel</button></form> }
+</td></tr>
+}
+</tbody></table>
+@if (!Model.Items.Any()) { <div class="alert alert-info">No bookings found.</div> }
